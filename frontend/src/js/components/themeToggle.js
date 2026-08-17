@@ -1,42 +1,63 @@
 class ThemeToggle extends HTMLElement {
     connectedCallback() {
-        // HTML component for theme toggle dropdown
         this.innerHTML = `
-            <select class= "theme-toggle" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+            <select class="theme-toggle" style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
                 <option value="light">Light Mode</option>
                 <option value="dark">Dark Mode</option>
+                <option value="system">System</option>
             </select>
         `;
-        const select = this.querySelector('theme-toggle');
 
-        // Swapping themes
+        const select = this.querySelector('.theme-toggle'); // fixed: class selector, not tag selector
+
         const applyTheme = (theme) => {
             if (theme === 'system') {
-                const systemdark = window.matchMedia('(prefers-color-scheme: dark)').matches; // Gets system theme
-                document.documentElement.setAttribute('data-theme', systemdark ? 'dark' : 'light'); // Puts systhem theme
+                const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', systemDark ? 'dark' : 'light');
             } else {
-                document.documentElement.setAttribute('data-theme', theme); // If no system theme, puts selected theme
+                document.documentElement.setAttribute('data-theme', theme);
             }
-        }
+        };
 
-        // Getting previously saved theme from LocalStorage and putting it to default theme
-        const savedTheme = localStorage.getItem('theme') || 'system'; // Gets saved theme locally or defaults to system theme
+        const getSavedTheme = () => {
+            try {
+                return localStorage.getItem('theme') || 'system';
+            } catch {
+                return 'system'; // localStorage unavailable (e.g. private browsing)
+            }
+        };
+
+        const setSavedTheme = (theme) => {
+            try {
+                localStorage.setItem('theme', theme);
+            } catch {
+                // ignore — theme just won't persist this session
+            }
+        };
+
+        const savedTheme = getSavedTheme();
         applyTheme(savedTheme);
-        select.value = savedTheme; // Puts saved theme to the dropdown in UI
+        select.value = savedTheme; // now guaranteed to match an <option>, since 'system' exists
 
-        // Listening for any change in the theme
-        selectEL.addEventListener('change', (event) => {
-            const changeTheme = event.target.value; // Gets the selected theme from the dropdown
-            localStorage.setItem('theme', changeTheme);
+        select.addEventListener('change', (event) => { // fixed: was undefined `selectEL`
+            const changeTheme = event.target.value;
+            setSavedTheme(changeTheme);
             applyTheme(changeTheme);
         });
 
-        // Listening for system theme changes instantaneously
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-            const savedTheme = localStorage.getItem('Theme') || 'system';
-            if (savedTheme === 'system') {
+        this._mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        this._mediaListener = (event) => {
+            if (getSavedTheme() === 'system') { // fixed: 'theme' not 'Theme'
                 applyTheme(event.matches ? 'dark' : 'light');
             }
-        });
+        };
+        this._mediaQuery.addEventListener('change', this._mediaListener);
+    }
+
+    disconnectedCallback() {
+        // fixed: avoid leaking/duplicating listeners if reconnected
+        this._mediaQuery?.removeEventListener('change', this._mediaListener);
     }
 }
+
+customElements.define('theme-toggle', ThemeToggle);
