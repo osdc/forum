@@ -1,4 +1,4 @@
-class ReportModal extends React.Component {
+class ReportModal extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <dialog id="report-dialog" style="padding: 20px; border: 1px solid black;">
@@ -10,7 +10,7 @@ class ReportModal extends React.Component {
                     <div style="margin-bottom: 8px;">
                         <label><input type="radio" name="reason" value="harassment"> Harassment</label>
                     </div>
-                    <div style="margin-bottom: 16px;">
+                    <div style="margin-bottom: 8px;">
                         <label><input type="radio" name="reason" value="brokenrules"> Breaks forum rules</label>
                     </div>
                     <button type="button" id="cancel-btn">Cancel</button>
@@ -21,7 +21,7 @@ class ReportModal extends React.Component {
 
         this.dialog = this.querySelector('#report-dialog');
         this.form = this.querySelector('#report-form');
-        const cancelBtn = this.quetySelector('#cancel-btn');
+        const cancelBtn = this.querySelector('#cancel-btn');
 
         cancelBtn.addEventListener('click', () => {
             this.close();
@@ -45,6 +45,5 @@ class ReportModal extends React.Component {
         this.dialog.close();
         this.form.reset();
     }
-
 
 }
