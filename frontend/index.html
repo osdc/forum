@@ -11,14 +11,21 @@
 
   <!-- Load Components -->
   <script type="module" src="src/js/components/header.js"></script>
+  <script type="module" src="src/js/components/tagsDropdown.js"></script>
 </head>
 <body>
 
   <site-header></site-header>
+  <main style="padding: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+      <h1>Welcome to OSDForum</h1>
+      <tags-dropdown></tags-dropdown>
+    </div>
 
-  <div style="padding: 24px;">
-    <h1>Welcome to OSDForum</h1>
-  </div>
+    <div id="posts-feed">
+      <p>Posts will load here based on the selected tag...</p>
+    </div>
+  </main>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ class SearchBar extends HTMLElement {
     this.shadowRoot.adoptedStyleSheets = [searchStyles];
     this.shadowRoot.innerHTML = `
       <form action="/search" method="GET">
-        <input type="search" name="q" placeholder="Search..." aria-label="Search">
+        <input type="search" name="q" placeholder="   Search..." aria-label="Search">
         <button class="search-btn" type="submit">${searchOutlineIcon}</button>
       </form>
     `;
