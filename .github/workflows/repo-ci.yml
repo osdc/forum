@@ -1,0 +1,43 @@
+name: Repo CI
+
+on:
+  push:
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - "lefthook.yml"
+      - "commitlint.config.mjs"
+      - ".github/workflows/repo-ci.yml"
+  pull_request:
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - "lefthook.yml"
+      - "commitlint.config.mjs"
+      - ".github/workflows/repo-ci.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }} # creates a unique group; for example, "Commitlint-refs/heads/main"
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }} # prevents cancellations on deployments to main
+
+permissions:
+  contents: read
+
+jobs:
+  repo-ci:
+    name: Dependency Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
