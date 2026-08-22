@@ -1,0 +1,39 @@
+colors: true
+
+commit-msg:
+  jobs:
+    - name: lint-commit-message
+      run: npx --no -- commitlint --edit {1}
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: biome-check
+      glob: "frontend/**/*.{js,mjs,cjs,jsx,ts,tsx,json,jsonc,css,html}"
+      root: "frontend/"
+      run: npx @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  jobs:
+    - name: vite-build-check
+      glob: "frontend/**/*"
+      root: "frontend/"
+      run: npm run build
+
+post-merge:
+  parallel: false
+  jobs:
+    - name: sync-lefthook-hooks
+      glob: "lefthook.yml"
+      run: npx lefthook install
+
+    - name: install-root-deps
+      glob: "package-lock.json"
+      run: npm ci
+
+    - name: install-frontend-deps
+      glob: "frontend/package-lock.json"
+      root: "frontend/"
+      run: npm ci

@@ -1,31 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OSDForum</title>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>OSDForum</title>
 
-  <!-- Load StyleSheets -->
-  <link rel="stylesheet" href="src/css/base.css" />
+        <!--
+            Anti-Flash Script: Runs synchronously BEFORE the page renders to set
+            data-theme immediately, preventing a white flash for dark mode users.
+        -->
+        <script>
+            (() => {
+                const savedTheme = localStorage.getItem("theme") || "system";
+                if (savedTheme === "system") {
+                    const isDark = window.matchMedia(
+                        "(prefers-color-scheme: dark)",
+                    ).matches;
+                    document.documentElement.setAttribute(
+                        "data-theme",
+                        isDark ? "dark" : "light",
+                    );
+                } else {
+                    document.documentElement.setAttribute(
+                        "data-theme",
+                        savedTheme,
+                    );
+                }
+            })();
+        </script>
 
-  <!-- Load Components -->
-  <script type="module" src="src/js/components/header.js"></script>
-  <script type="module" src="src/js/components/tagsDropdown.js"></script>
-</head>
-<body>
+        <!-- Load StyleSheets -->
+        <link rel="stylesheet" href="src/css/base.css" />
 
-  <site-header></site-header>
-  <main style="padding: 24px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-      <h1>Welcome to OSDForum</h1>
-      <tags-dropdown></tags-dropdown>
-    </div>
+        <!-- Load Components -->
+        <script type="module" src="src/js/components/header.js"></script>
+        <script type="module" src="src/js/components/tagsDropdown.js"></script>
+    </head>
+    <body>
+        <site-header></site-header>
+        <main style="padding: 24px">
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 24px;
+                "
+            >
+                <h1>Welcome to OSDForum</h1>
+                <tags-dropdown></tags-dropdown>
+            </div>
 
-    <div id="posts-feed">
-      <p>Posts will load here based on the selected tag...</p>
-    </div>
-  </main>
-
-</body>
+            <div id="posts-feed">
+                <p>Posts will load here based on the selected tag...</p>
+            </div>
+        </main>
+    </body>
 </html>

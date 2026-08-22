@@ -1,7 +1,17 @@
+// Import component CSS as a raw string using Vite's ?inline
+import stylesString from "@css/components/reportModal.css?inline";
+
+// Parse into a constructable stylesheet
+const reportStyles = new CSSStyleSheet();
+reportStyles.replaceSync(stylesString);
+
 class ReportModal extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
-            <dialog id="report-dialog" style="padding: 20px; border: 1px solid black;">
+	constructor() {
+		super();
+		this.attachShadow({ mode: "open" });
+		this.shadowRoot.adoptedStyleSheets = [reportStyles];
+		this.shadowRoot.innerHTML = `
+            <dialog id="report-dialog">
                 <h3>Select why you want to report</h3>
                 <form id="report-form" method="dialog">
                     <div style="margin-bottom: 8px;">
@@ -18,32 +28,35 @@ class ReportModal extends HTMLElement {
                 </form>
             </dialog>
         `;
+	}
 
-        this.dialog = this.querySelector('#report-dialog');
-        this.form = this.querySelector('#report-form');
-        const cancelBtn = this.querySelector('#cancel-btn');
+	connectedCallback() {
+		this.dialog = this.shadowRoot.querySelector("#report-dialog");
+		this.form = this.shadowRoot.querySelector("#report-form");
+		const cancelBtn = this.shadowRoot.querySelector("#cancel-btn");
 
-        cancelBtn.addEventListener('click', () => {
-            this.close();
-        });
+		cancelBtn.addEventListener("click", () => {
+			this.close();
+		});
 
-        this.form.addEventListener('submit', () => {
-            const formData = new FormData(this.form);
-            const reason = formData.get('reason');
+		this.form.addEventListener("submit", () => {
+			const formData = new FormData(this.form);
+			const reason = formData.get("reason");
 
-            console.log('User reported this for: ', reason);
+			console.log("User reported this for: ", reason);
 
-            this.form.reset();
-        });
-    }
+			this.form.reset();
+		});
+	}
 
-    open(){
-        this.dialog.showModal();
-    } 
-    
-    close () {
-        this.dialog.close();
-        this.form.reset();
-    }
+	open() {
+		this.dialog.showModal();
+	}
 
+	close() {
+		this.dialog.close();
+		this.form.reset();
+	}
 }
+
+customElements.define("report-modal", ReportModal);
