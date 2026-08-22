@@ -1,12 +1,12 @@
 :host {
-    display: block;
-    font-family: system-ui, sans-serif;
+	display: block;
+	font-family: system-ui, sans-serif;
 }
 .theme-toggle {
-    height: 36px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color, #ccc);
-    background: var(--input-bg, #fff);
-    color: var(--text-color, #333);
-    cursor: pointer;
+	height: 36px;
+	border-radius: 6px;
+	border: 1px solid var(--border-color, #ccc);
+	background: var(--input-bg, #fff);
+	color: var(--text-color, #333);
+	cursor: pointer;
 }

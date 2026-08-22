@@ -1,6 +1,6 @@
 class ReportModal extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+	connectedCallback() {
+		this.innerHTML = `
             <dialog id="report-dialog" style="padding: 20px; border: 1px solid black;">
                 <h3>Select why you want to report</h3>
                 <form id="report-form" method="dialog">
@@ -19,31 +19,30 @@ class ReportModal extends HTMLElement {
             </dialog>
         `;
 
-        this.dialog = this.querySelector('#report-dialog');
-        this.form = this.querySelector('#report-form');
-        const cancelBtn = this.querySelector('#cancel-btn');
+		this.dialog = this.querySelector("#report-dialog");
+		this.form = this.querySelector("#report-form");
+		const cancelBtn = this.querySelector("#cancel-btn");
 
-        cancelBtn.addEventListener('click', () => {
-            this.close();
-        });
+		cancelBtn.addEventListener("click", () => {
+			this.close();
+		});
 
-        this.form.addEventListener('submit', () => {
-            const formData = new FormData(this.form);
-            const reason = formData.get('reason');
+		this.form.addEventListener("submit", () => {
+			const formData = new FormData(this.form);
+			const reason = formData.get("reason");
 
-            console.log('User reported this for: ', reason);
+			console.log("User reported this for: ", reason);
 
-            this.form.reset();
-        });
-    }
+			this.form.reset();
+		});
+	}
 
-    open(){
-        this.dialog.showModal();
-    } 
-    
-    close () {
-        this.dialog.close();
-        this.form.reset();
-    }
+	open() {
+		this.dialog.showModal();
+	}
 
+	close() {
+		this.dialog.close();
+		this.form.reset();
+	}
 }

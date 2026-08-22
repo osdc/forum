@@ -1,109 +1,113 @@
 :host {
-    display: block;
-    font-family: system-ui, sans-serif;
-    color: var(--text-color, #f3f4f6);
+	display: block;
+	font-family: system-ui, sans-serif;
+	color: var(--text-color, #f3f4f6);
 }
 
 .table-header {
-    display: grid;
-    grid-template-columns: 1fr 140px 80px 100px;
-    padding: 12px 20px;
-    font-weight: 600;
-    font-size: 14px;
-    opacity: 0.7;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	display: grid;
+	grid-template-columns: 1fr 140px 80px 100px;
+	padding: 12px 20px;
+	font-weight: 600;
+	font-size: 14px;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .posts-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 12px;
 }
 
 .post-item {
-    position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
+	position: relative;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 16px;
+	overflow: hidden;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	cursor: pointer;
 }
 
 .post-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
-    transform: translateY(-2px);
+	background: rgba(255, 255, 255, 0.1);
+	border-color: rgba(255, 255, 255, 0.2);
+	box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+	transform: translateY(-2px);
 }
 
 .card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top right, rgba(99, 102, 241, 0.08), transparent);
-    pointer-events: none;
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to top right,
+		rgba(99, 102, 241, 0.08),
+		transparent
+	);
+	pointer-events: none;
 }
 
 .post-content {
-    position: relative;
-    z-index: 10;
-    display: grid;
-    grid-template-columns: 1fr 140px 80px 100px;
-    align-items: center;
-    padding: 20px;
+	position: relative;
+	z-index: 10;
+	display: grid;
+	grid-template-columns: 1fr 140px 80px 100px;
+	align-items: center;
+	padding: 20px;
 }
 
 .title-section {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 
 .post-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0;
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0;
 }
 
 .tags-container {
-    display: flex;
-    gap: 6px;
+	display: flex;
+	gap: 6px;
 }
 
 .tag-chip {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 12px;
-    background: rgba(99, 102, 241, 0.15);
-    color: #818cf8;
-    border: 1px solid rgba(129, 140, 248, 0.3);
+	font-size: 11px;
+	padding: 2px 8px;
+	border-radius: 12px;
+	background: rgba(99, 102, 241, 0.15);
+	color: #818cf8;
+	border: 1px solid rgba(129, 140, 248, 0.3);
 }
 
 .author-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
 }
 
 .avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
 }
 
 .stat {
-    font-size: 14px;
-    opacity: 0.8;
+	font-size: 14px;
+	opacity: 0.8;
 }
 
 .no-posts {
-    padding: 32px;
-    text-align: center;
-    opacity: 0.6;
+	padding: 32px;
+	text-align: center;
+	opacity: 0.6;
 }
 
 /* It killed me to write so much css but anything to make it look good */

@@ -1,31 +1,33 @@
 :host {
-    display: inline-block;
-    font-family: system-ui, sans-serif;
+	display: inline-block;
+	font-family: system-ui, sans-serif;
 }
 
 .tags-toggle {
-    height: 36px;
-    padding: 0 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color, #ccc);
-    background: var(--input-bg, #fff);
-    color: var(--text-color, #333);
-    font-size: 14px;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+	height: 36px;
+	padding: 0 12px;
+	border-radius: 6px;
+	border: 1px solid var(--border-color, #ccc);
+	background: var(--input-bg, #fff);
+	color: var(--text-color, #333);
+	font-size: 14px;
+	cursor: pointer;
+	outline: none;
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s;
 }
 
 .tags-toggle:hover {
-    border-color: var(--border-hover, #999);
+	border-color: var(--border-hover, #999);
 }
 
 .tags-toggle:focus {
-    border-color: var(--accent-color, #3b82f6);
+	border-color: var(--accent-color, #3b82f6);
 }
 
 /* Styles the dropdown options inside */
 .tags-toggle option {
-    background: var(--input-bg, #fff);
-    color: var(--text-color, #333);
+	background: var(--input-bg, #fff);
+	color: var(--text-color, #333);
 }
