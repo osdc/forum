@@ -12,6 +12,7 @@
   <!-- Load Components -->
   <script type="module" src="src/js/components/header.js"></script>
   <script type="module" src="src/js/components/tagsDropdown.js"></script>
+  <script type="module" src="src/js/components/postList.js"></script>
 </head>
 <body>
 
@@ -22,10 +23,10 @@
       <tags-dropdown></tags-dropdown>
     </div>
 
-    <div id="posts-feed">
-      <p>Posts will load here based on the selected tag...</p>
-    </div>
+    <post-list id="main-post-list"></post-list>
   </main>
+
+  <script type="module" src="src/js/pages/landing.js"></script>
 
 </body>
 </html>

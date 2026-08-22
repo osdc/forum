@@ -13,6 +13,7 @@ class TagsDropdown extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <select class = "tags-toggle" name = "tags-toggle">
                 <option value = "" disabled selected>Tags</option>
+                <option value = "general">General</option>
                 <option value = "open-source">Open Source</option>
                 <option value = "linux">Linux</option>
                 <option value = "electronics">Electronics</option>
