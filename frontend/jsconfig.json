@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "ES2024",
+		"module": "preserve",
+		"moduleResolution": "bundler",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"],
+			"@api/*": ["./src/js/api/*"],
+			"@assets/*": ["./src/assets/*"],
+			"@components/*": ["./src/js/components/*"],
+			"@css/*": ["./src/css/*"],
+			"@utils/*": ["./src/js/utils/*"]
+		}
+	},
+	"include": ["./**/*"],
+	"exclude": ["node_modules", "dist"]
+}
