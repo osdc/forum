@@ -1,16 +1,16 @@
 // Import component CSS as a raw string using Vite's ?inline
-import stylesString from "../../css/components/tagsDropdown.css?inline"
+import stylesString from "@css/components/tagsDropdown.css?inline";
 
 // Parse into a constructable stylesheet
 const tagsStyles = new CSSStyleSheet();
 tagsStyles.replaceSync(stylesString);
 
 class TagsDropdown extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({mode : 'open'});
-        this.shadowRoot.adoptedStyleSheets = [tagsStyles];
-        this.shadowRoot.innerHTML = `
+	constructor() {
+		super();
+		this.attachShadow({ mode: "open" });
+		this.shadowRoot.adoptedStyleSheets = [tagsStyles];
+		this.shadowRoot.innerHTML = `
             <select class = "tags-toggle" name = "tags-toggle">
                 <option value = "" disabled selected>Tags</option>
                 <option value = "open-source">Open Source</option>
@@ -25,31 +25,33 @@ class TagsDropdown extends HTMLElement {
                 <option value = "cybersecurity">Cybersecurity</option>
                 <option value = "uncategorized">Uncategorized</option>
             </select>
-        `
-    }
+        `;
+	}
 
-    connectedCallback() {
-        const select = this.shadowRoot.querySelector('.tags-toggle');
+	connectedCallback() {
+		const select = this.shadowRoot.querySelector(".tags-toggle");
 
-        this._changeListener = (event) => {
-            const selectedTag = event.target.value;
+		this._changeListener = (event) => {
+			const selectedTag = event.target.value;
 
-            this.dispatchEvent(new CustomEvent('tag-selected', {
-                detail: { tag: selectedTag },
-                bubbles: true,
-                composed: true
-            }));
-        };
+			this.dispatchEvent(
+				new CustomEvent("tag-selected", {
+					detail: { tag: selectedTag },
+					bubbles: true,
+					composed: true,
+				}),
+			);
+		};
 
-        select.addEventListener('change', this._changeListener);
-    }
+		select.addEventListener("change", this._changeListener);
+	}
 
-    disconnectedCallback() {
-        const select = this.shadowRoot.querySelector('.tags-toggle');
-        if (select) {
-            select.removeEventListener('change', this._changeListener);
-        }
-    }
+	disconnectedCallback() {
+		const select = this.shadowRoot.querySelector(".tags-toggle");
+		if (select) {
+			select.removeEventListener("change", this._changeListener);
+		}
+	}
 }
 
-customElements.define('tags-dropdown', TagsDropdown);
+customElements.define("tags-dropdown", TagsDropdown);

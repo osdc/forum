@@ -1,28 +1,28 @@
 :host {
-    display: block;
-    font-family: system-ui, sans-serif;
+	display: block;
+	font-family: system-ui, sans-serif;
 }
 
 form {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
 }
 
 input {
-    height: 36px;
-    min-width: 250px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    background: var(--input-bg);
-    color: var(--text-color);
+	height: 36px;
+	min-width: 250px;
+	border-radius: 6px;
+	border: 1px solid var(--border-color);
+	background: var(--input-bg);
+	color: var(--text-color);
 }
 
 button {
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    background: var(--input-bg);
-    color: var(--text-color);
-    cursor: pointer;
+	height: 36px;
+	border-radius: 50%;
+	border: 1px solid var(--border-color);
+	background: var(--input-bg);
+	color: var(--text-color);
+	cursor: pointer;
 }

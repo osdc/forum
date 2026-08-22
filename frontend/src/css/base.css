@@ -1,34 +1,36 @@
 /* Default fallback */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #111827;
-  --border-color: #e5e7eb;
-  --input-bg: #ffffff;
-  --svg-fill: #101012;
+	--bg-color: #ffffff;
+	--text-color: #111827;
+	--border-color: #e5e7eb;
+	--input-bg: #ffffff;
+	--svg-fill: #101012;
 }
 
 /* Overrides when data-theme changes */
 :root[data-theme="dark"] {
-  --bg-color: #0f172a;
-  --text-color: #f8fafc;
-  --border-color: #334155;
-  --input-bg: #1e293b;
-  --svg-fill: #f2f2ef;
+	--bg-color: #0f172a;
+	--text-color: #f8fafc;
+	--border-color: #334155;
+	--input-bg: #1e293b;
+	--svg-fill: #f2f2ef;
 }
 
 :root[data-theme="light"] {
-  --bg-color: #ffffff;
-  --text-color: #111827;
-  --border-color: #e5e7eb;
-  --input-bg: #ffffff;
-  --svg-fill: #101012;
+	--bg-color: #ffffff;
+	--text-color: #111827;
+	--border-color: #e5e7eb;
+	--input-bg: #ffffff;
+	--svg-fill: #101012;
 }
 
 /* Global Page Styles */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  transition: background-color 0.2s ease, color 0.2s ease;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	margin: 0;
+	font-family: system-ui, sans-serif;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
 }
